@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fittest4Fit — Entrena Patrones, No Metros · Hernán Schneider</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#04101F;--navy-mid:#081828;--navy-light:#0d2540;--cyan:#00C2FF;--cyan-dim:rgba(0,194,255,0.12);--cyan-glow:rgba(0,194,255,0.35);--white:#F0F4F8;--gray:#8899AA;--gold:#FFB830}
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 6vw;background:rgba(4,16,31,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,194,255,0.08)}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.12em;color:var(--white);text-decoration:none}
+  .nav-logo span{color:var(--cyan)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--gray);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+  .nav-links a:hover{color:var(--cyan)}
+  .nav-cta{background:var(--cyan)!important;color:var(--navy)!important;padding:8px 18px;border-radius:4px;font-weight:700!important}
+
+  /* HERO — two column */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:100px 6vw 80px;position:relative;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 50%,rgba(0,194,255,0.07) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(0,194,255,0.04) 0%,transparent 60%)}
+  .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,194,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,194,255,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 60% 50%,black 40%,transparent 75%)}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;width:100%;max-width:1200px;margin:0 auto}
+  .hero-content{}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--cyan-dim);border:1px solid rgba(0,194,255,0.25);padding:6px 14px;border-radius:2px;font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:28px;animation:fadeUp 0.6s ease both}
+  .hero-tag::before{content:'';width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+  h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.2rem,6.5vw,6.5rem);line-height:0.93;letter-spacing:0.02em;animation:fadeUp 0.6s 0.1s ease both}
+  h1 .accent{color:var(--cyan)}
+  .hero-sub{font-size:clamp(0.9rem,1.8vw,1.1rem);color:var(--gray);font-weight:300;line-height:1.75;margin:22px 0 36px;max-width:500px;animation:fadeUp 0.6s 0.2s ease both}
+  .hero-sub strong{color:var(--white);font-weight:500}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp 0.6s 0.3s ease both}
+  .btn-primary{background:var(--cyan);color:var(--navy);padding:13px 28px;border-radius:4px;font-weight:700;font-size:0.92rem;text-decoration:none;letter-spacing:0.04em;transition:transform 0.2s,box-shadow 0.2s;display:inline-block}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--cyan-glow)}
+  .btn-ghost{background:transparent;color:var(--white);padding:13px 28px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);font-weight:500;font-size:0.92rem;text-decoration:none;letter-spacing:0.04em;transition:border-color 0.2s,color 0.2s;display:inline-block}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+  .hero-stats{display:flex;gap:32px;margin-top:48px;animation:fadeUp 0.6s 0.4s ease both}
+  .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--cyan);line-height:1}
+  .stat-label{font-size:0.68rem;color:var(--gray);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+
+  /* HERO PHOTO */
+  .hero-photo-wrap{position:relative;animation:fadeUp 0.7s 0.2s ease both}
+  .hero-photo{width:100%;height:580px;object-fit:cover;object-position:top center;border-radius:16px;display:block;border:1px solid rgba(0,194,255,0.15);filter:brightness(0.95)}
+  .hero-photo-glow{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:70%;height:60px;background:var(--cyan-glow);filter:blur(40px);border-radius:50%}
+  .hero-photo-badge{position:absolute;bottom:24px;left:24px;background:rgba(4,16,31,0.88);backdrop-filter:blur(10px);border:1px solid rgba(0,194,255,0.25);border-radius:8px;padding:12px 16px}
+  .badge-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.08em;color:var(--white)}
+  .badge-title{font-size:0.72rem;color:var(--cyan);font-family:'DM Mono',monospace;letter-spacing:0.08em;margin-top:2px}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,194,255,0.3),transparent);margin:0 6vw}
+  .section-label{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.15em;color:var(--cyan);text-transform:uppercase;margin-bottom:16px}
+  h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:0.03em;margin-bottom:20px}
+  .section{padding:90px 6vw}
+
+  /* PROBLEMA */
+  .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:50px;max-width:1100px}
+  .problem-list{list-style:none;display:flex;flex-direction:column;gap:16px}
+  .problem-item{display:flex;align-items:flex-start;gap:16px;padding:18px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:6px;transition:border-color 0.2s}
+  .problem-item:hover{border-color:rgba(0,194,255,0.2)}
+  .problem-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+  .problem-text{font-size:0.9rem;line-height:1.65;color:var(--gray)}
+  .problem-text strong{color:var(--white)}
+  .solution-block{background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));border:1px solid rgba(0,194,255,0.2);border-radius:12px;padding:36px;position:relative;overflow:hidden}
+  .solution-block::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:var(--cyan-dim);border-radius:50%;filter:blur(40px)}
+  .solution-quote{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;line-height:1.25;color:var(--cyan);margin-bottom:18px}
+  .solution-body{font-size:0.9rem;line-height:1.8;color:var(--gray)}
+
+  /* PRODUCTS */
+  .products{background:var(--navy-mid);padding:90px 6vw}
+  .products-header{text-align:center;max-width:600px;margin:0 auto 60px}
+  .products-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1100px;margin:0 auto}
+  .product-card{border-radius:12px;overflow:hidden;position:relative;transition:transform 0.3s}
+  .product-card:hover{transform:translateY(-6px)}
+  .product-card.low-ticket{background:linear-gradient(145deg,#081828,#0a1e35);border:1px solid rgba(0,194,255,0.15)}
+  .product-card.high-ticket{background:linear-gradient(145deg,#081828,#0d1f30);border:1px solid rgba(0,194,255,0.4);box-shadow:0 0 40px rgba(0,194,255,0.08)}
+  .product-badge{position:absolute;top:18px;right:18px;background:var(--cyan);color:var(--navy);font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px}
+  .product-badge.flagship{background:var(--gold)}
+  .product-inner{padding:36px}
+  .product-type{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px}
+  .product-name{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.04em;line-height:1.1;margin-bottom:14px}
+  .product-tagline{font-size:0.88rem;color:var(--gray);line-height:1.7;margin-bottom:24px}
+  .product-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+  .product-features li{display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:var(--gray);line-height:1.5}
+  .product-features li::before{content:'→';color:var(--cyan);font-weight:700;flex-shrink:0;margin-top:1px}
+  .product-price{display:flex;align-items:baseline;gap:8px;margin-bottom:20px}
+  .price-amount{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:var(--white);line-height:1}
+  .price-note{font-size:0.78rem;color:var(--gray)}
+  .nf-logo-card{width:80px;margin-bottom:16px;display:block;opacity:0.9}
+
+  /* LEAD MAGNET */
+  .lm-section{padding:90px 6vw;background:var(--navy)}
+  .lm-wrap{display:flex;align-items:flex-start;gap:80px;max-width:1100px;margin:0 auto}
+  .lm-content{flex:1}
+  .lm-form-wrap{flex:0 0 380px}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper{background:linear-gradient(145deg,#0d2540,#081828)!important;border:1px solid rgba(0,194,255,0.25)!important;border-radius:12px!important;width:100%!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody{padding:32px!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4{color:#F0F4F8!important;font-family:'DM Sans',sans-serif!important;font-size:1.2rem!important;font-weight:700!important;margin-bottom:8px!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p{color:#8899AA!important;font-family:'DM Sans',sans-serif!important;font-size:0.88rem!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input{background:#04101F!important;border-color:rgba(255,255,255,0.1)!important;color:#F0F4F8!important;border-radius:6px!important;padding:13px 16px!important;font-family:'DM Sans',sans-serif!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button{background:#00C2FF!important;border-radius:6px!important;font-family:'DM Sans',sans-serif!important;font-weight:700!important;font-size:0.95rem!important;padding:14px!important;color:#04101F!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody{padding:32px!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4{color:#F0F4F8!important;font-family:'DM Sans',sans-serif!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p{color:#8899AA!important;font-family:'DM Sans',sans-serif!important}
+  #mlb2-40728192.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedHeader{display:none!important}
+
+  /* ABOUT */
+  .about{background:var(--navy-mid);padding:90px 6vw}
+  .about-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto}
+  .about-photo{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:12px;border:1px solid rgba(0,194,255,0.15);display:block}
+  .credentials{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+  .credential-item{display:flex;align-items:center;gap:12px;font-size:0.88rem;color:var(--gray)}
+  .credential-item::before{content:'▸';color:var(--cyan)}
+
+  footer{padding:44px 6vw;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.12em}
+  .footer-logo span{color:var(--cyan)}
+  .footer-links{display:flex;gap:22px;list-style:none}
+  .footer-links a{font-size:0.78rem;color:var(--gray);text-decoration:none;transition:color 0.2s}
+  .footer-links a:hover{color:var(--cyan)}
+  .footer-copy{font-size:0.73rem;color:rgba(136,153,170,0.45)}
+
+  @media(max-width:900px){
+    .hero-inner{grid-template-columns:1fr}
+    .hero-photo-wrap{display:none}
+  }
+  @media(max-width:768px){
+    .nav-links{display:none}
+    .hero{padding:100px 5vw 60px}
+    .hero-stats{gap:20px}
+    .problem-grid,.products-grid,.about-inner{grid-template-columns:1fr}
+    .lm-wrap{flex-direction:column;gap:40px}
+    .lm-form-wrap{width:100%;flex:none}
+    footer{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">FITTEST<span>4</span>FIT</a>
+  <ul class="nav-links">
+    <li><a href="#metodo">Método</a></li>
+    <li><a href="#productos">Programas</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#libro" class="nav-cta">Libro gratis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Entrenamiento Neuromuscular · Natación y Triatlón</div>
+      <h1>NO ENTRENO<br><span class="accent">METROS.</span><br>ENTRENO<br>PATRONES.</h1>
+      <p class="hero-sub">Si llevas años acumulando kilómetros en el agua sin mejorar tu técnica ni tu velocidad, el problema no es tu esfuerzo. <strong>Es tu sistema nervioso.</strong></p>
+      <div class="hero-ctas">
+        <a href="#libro" class="btn-primary">📘 Libro gratis</a>
+        <a href="neuroforce.html" class="btn-ghost">Ver NeuroForce™</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">21</div><div class="stat-label">Días de transformación</div></div>
+        <div><div class="stat-num">30–60</div><div class="stat-label">Edad objetivo</div></div>
+        <div><div class="stat-num">0</div><div class="stat-label">Km extra necesarios</div></div>
+      </div>
+    </div>
+
+    <!-- FOTO HERNÁN -->
+    <div class="hero-photo-wrap">
+      <img src="Captura%20de%20pantalla%202024-04-13%20a%20las%2020.52.27.png" alt="Hernán Schneider — Fittest4Fit" class="hero-photo">
+      <div class="hero-photo-glow"></div>
+      <div class="hero-photo-badge">
+        <div class="badge-name">Lic. Hernán Schneider</div>
+        <div class="badge-title">@fittest4fit · Strength & Conditioning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROBLEMA -->
+<section class="section" id="metodo">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label">El diagnóstico</div>
+    <h2>EL PROBLEMA QUE<br>NADIE TE DICE</h2>
+    <div class="problem-grid">
+      <ul class="problem-list">
+        <li class="problem-item"><span class="problem-icon">🔁</span><span class="problem-text"><strong>Más metros no es más velocidad.</strong> Repetir movimientos incorrectos consolida errores en tu sistema nervioso.</span></li>
+        <li class="problem-item"><span class="problem-icon">😤</span><span class="problem-text"><strong>Tu técnica colapsa con la fatiga.</strong> El patrón se deteriora exactamente cuando más lo necesitas: en competición.</span></li>
+        <li class="problem-item"><span class="problem-icon">📉</span><span class="problem-text"><strong>El entrenamiento tradicional ignora el SNC.</strong> Nadar más duro con el sistema nervioso saturado produce regresión, no progresión.</span></li>
+        <li class="problem-item"><span class="problem-icon">⏱️</span><span class="problem-text"><strong>Tienes tiempo limitado.</strong> No puedes permitirte entrenar sin un sistema que garantice retorno sobre cada minuto invertido.</span></li>
+      </ul>
+      <div class="solution-block">
+        <div class="solution-quote">"El rendimiento atlético es un problema del sistema nervioso, no muscular."</div>
+        <p class="solution-body">La metodología NeuroForce™ parte de esta premisa. Usando principios de contraste francés, ventanas PAP/PAPE y perfiles F-V individualizados, reorganizamos cómo tu sistema nervioso aprende y expresa el movimiento en el agua.<br><br>El resultado: velocidad sostenible sin aumentar volumen. Técnica que aguanta en competición.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTOS -->
+<section class="products" id="productos">
+  <div class="products-header">
+    <div class="section-label">Los programas</div>
+    <h2>ELIGE TU<br>PUNTO DE ENTRADA</h2>
+    <p style="color:var(--gray);font-size:0.92rem;line-height:1.7">Dos niveles. Un mismo principio: el rendimiento empieza en el sistema nervioso.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card low-ticket">
+      <span class="product-badge">Acceso inmediato</span>
+      <div class="product-inner">
+        <div class="product-type">Curso online · Hotmart</div>
+        <div class="product-name">LA FÓRMULA<br>21 DÍAS</div>
+        <p class="product-tagline">Transforma tu técnica de natación en 21 días. 7 clases para mejorar tu eficiencia, velocidad y coordinación — sin horas interminables de entrenamiento.</p>
+        <ul class="product-features">
+          <li>Nadar más rápido con menos esfuerzo</li>
+          <li>Eliminar errores técnicos que frenan tu velocidad</li>
+          <li>Mejorar coordinación respiración–brazada</li>
+          <li>Estabilidad y alineación desde la primera semana</li>
+          <li>Acceso de por vida · Plataforma Hotmart</li>
+        </ul>
+        <div class="product-price"><span class="price-amount">€17</span><span class="price-note">pago único</span></div>
+        <a href="formula.html" class="btn-primary" style="display:block;text-align:center">Ver La Fórmula →</a>
+      </div>
+    </div>
+    <div class="product-card high-ticket">
+      <span class="product-badge flagship">Programa flagship</span>
+      <div class="product-inner">
+        <img src="IMG_8790.PNG" alt="NeuroForce™" class="nf-logo-card">
+        <div class="product-type">Sistema completo</div>
+        <div class="product-name">NEUROFORCE™<br>ALPHAPATTERN</div>
+        <p class="product-tagline">El sistema progresivo de entrenamiento neuromuscular para nadadores y triatletas adultos que quieren rendimiento real y sostenible.</p>
+        <ul class="product-features">
+          <li>4 fases: Neural Prime → Force Integration → Pattern Transfer → AlphaReload</li>
+          <li>Programación individualizada con perfilado F-V</li>
+          <li>Monitorización CNS con CMJ y autorregulación RIR</li>
+          <li>Seguimiento directo con Hernán</li>
+          <li>Manual completo + tracker de sesiones Excel</li>
+        </ul>
+        <div class="product-price"><span class="price-amount">€97</span><span class="price-note">programa completo</span></div>
+        <a href="neuroforce.html" class="btn-primary" style="display:block;text-align:center;background:var(--gold);color:var(--navy)">Solicitar plaza →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LIBRO + MAILERLITE -->
+<section class="lm-section" id="libro">
+  <div class="lm-wrap">
+    <div class="lm-content">
+      <div class="section-label">Libro gratuito</div>
+      <h2>EMPIEZA<br>AQUÍ. GRATIS.</h2>
+      <p style="color:var(--gray);font-size:0.92rem;line-height:1.8;margin-top:16px;max-width:420px"><strong style="color:var(--white)">"Natación sin esfuerzo"</strong> — los principios del entrenamiento neuromuscular aplicados a la natación. El mismo marco de NeuroForce™, en formato accesible y completamente gratuito.</p>
+      <p style="color:var(--gray);font-size:0.88rem;line-height:1.7;margin-top:14px;max-width:420px">Déjame tu email y te lo envío ahora mismo.</p>
+    </div>
+    <div class="lm-form-wrap">
+      <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1777551");</style>
+      <div id="mlb2-40728192" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-40728192">
+        <div class="ml-form-align-center">
+          <div class="ml-form-embedWrapper embedForm">
+            <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+              <div class="ml-form-embedContent">
+                <h4>📘 Natación sin esfuerzo</h4>
+                <p>Déjame tu email y te envío el libro gratis ahora mismo.</p>
+              </div>
+              <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/985838/forms/186388148433978448/subscribe" data-code="" method="post" target="_blank">
+                <div class="ml-form-formContent">
+                  <div class="ml-form-fieldRow ml-last-item">
+                    <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                      <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Tu email" autocomplete="email">
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="ml-submit" value="1">
+                <div class="ml-form-embedSubmit">
+                  <button type="submit" class="primary">Enviarme el libro →</button>
+                  <button disabled="disabled" style="display:none;" type="button" class="loading">
+                    <div class="ml-form-embedSubmitLoad"></div>
+                    <span class="sr-only">Loading...</span>
+                  </button>
+                </div>
+                <input type="hidden" name="anticsrf" value="true">
+              </form>
+            </div>
+            <div class="ml-form-successBody row-success" style="display:none">
+              <div class="ml-form-successContent">
+                <h4>✅ ¡Enviado!</h4>
+                <p>Revisa tu bandeja de entrada. El libro está en camino.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>function ml_webform_success_40728192(){var $=ml_jQuery||jQuery;$('.ml-subscribe-form-40728192 .row-success').show();$('.ml-subscribe-form-40728192 .row-form').hide();}</script>
+      <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOBRE MÍ -->
+<section class="about" id="sobre-mi">
+  <div class="about-inner">
+    <img src="Captura%20de%20pantalla%202024-04-13%20a%20las%2020.52.27.png" alt="Hernán Schneider — Fittest4Fit" class="about-photo">
+    <div>
+      <div class="section-label">El coach</div>
+      <h2>LIC. HERNÁN<br>SCHNEIDER</h2>
+      <p style="color:var(--gray);font-size:0.92rem;line-height:1.8;margin-top:16px">No soy un nadador que aprendió a entrenar. Soy un investigador en ciencias del deporte y coach de strength &amp; conditioning especializado en entrenamiento neuromuscular aplicado a nadadores y triatletas adultos.</p>
+      <p style="color:var(--gray);font-size:0.92rem;line-height:1.8;margin-top:14px">NeuroForce™ no nació de una intuición. Nació de la literatura científica, de cientos de sesiones con deportistas reales, y de un proceso sistemático de validación metodológica.</p>
+      <div class="credentials">
+        <div class="credential-item">Licenciado en Ciencias del Deporte</div>
+        <div class="credential-item">Strength &amp; Conditioning Coach</div>
+        <div class="credential-item">Especialista en entrenamiento neuromuscular</div>
+        <div class="credential-item">Coach de natación y triatlón adulto (30–60)</div>
+        <div class="credential-item">Creador de @fittest4fit</div>
+      </div>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap">
+        <a href="formula.html" class="btn-primary">Ver La Fórmula</a>
+        <a href="neuroforce.html" class="btn-ghost">Ver NeuroForce™</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">FITTEST<span>4</span>FIT</div>
+  <ul class="footer-links">
+    <li><a href="formula.html">La Fórmula 21 Días</a></li>
+    <li><a href="neuroforce.html">NeuroForce™</a></li>
+    <li><a href="#libro">Libro gratis</a></li>
+    <li><a href="https://instagram.com/fittest4fit" target="_blank">Instagram</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Fittest4Fit · Hernán Schneider. Todos los derechos reservados.</div>
+</footer>
+</body>
+</html>

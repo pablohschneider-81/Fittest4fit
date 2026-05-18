@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Cookies — Fittest4Fit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #04101F;
+  --bg2:     #081828;
+  --surface: #0d2540;
+  --cyan:    #00C2FF;
+  --gold:    #FFB830;
+  --text:    #F0F4F8;
+  --text2:   #8899AA;
+  --border2: #1a3a5c;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.8;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0;
+  padding: .9rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(4,16,31,.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border2);
+  z-index: 100;
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem; color: var(--text);
+  text-decoration: none; letter-spacing: .04em;
+}
+.nav-logo span { color: var(--cyan); }
+.nav-back {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text2); text-decoration: none;
+  transition: color .2s;
+}
+.nav-back:hover { color: var(--cyan); }
+
+/* CONTENT */
+.policy-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+.policy-header {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border2);
+  padding-bottom: 2rem;
+}
+.policy-tag {
+  font-family: 'DM Mono', monospace; font-size: .6rem;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 1rem; display: block;
+}
+.policy-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1; margin-bottom: 1rem;
+}
+.policy-date {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .12em; color: var(--text2);
+}
+
+/* SECTIONS */
+.policy-section { margin-bottom: 2.5rem; }
+.policy-section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem; margin-bottom: .8rem;
+  color: var(--text);
+}
+.policy-section h3 {
+  font-family: 'DM Mono', monospace; font-size: .7rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); margin: 1.2rem 0 .5rem;
+}
+.policy-section p {
+  font-size: .9rem; color: var(--text2);
+  line-height: 1.8; margin-bottom: .8rem;
+}
+.policy-section a { color: var(--cyan); text-decoration: none; }
+.policy-section a:hover { text-decoration: underline; }
+
+/* TABLE */
+.cookie-table {
+  width: 100%; border-collapse: collapse;
+  margin: 1.2rem 0; font-size: .82rem;
+}
+.cookie-table th {
+  font-family: 'DM Mono', monospace; font-size: .58rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text2); text-align: left;
+  padding: .6rem 1rem; border-bottom: 1px solid var(--border2);
+}
+.cookie-table td {
+  padding: .7rem 1rem; color: var(--text2);
+  border-bottom: 1px solid rgba(26,58,92,.4);
+  vertical-align: top;
+}
+.cookie-table td:first-child { color: var(--text); font-weight: 500; }
+.badge {
+  display: inline-block; padding: .15rem .6rem;
+  font-family: 'DM Mono', monospace; font-size: .55rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  border-radius: 2px;
+}
+.badge-essential { background: rgba(0,194,255,.1); color: var(--cyan); }
+.badge-marketing { background: rgba(255,184,48,.1); color: var(--gold); }
+
+/* GOLD LINE */
+.gold-line {
+  width: 48px; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+  margin-bottom: 2rem;
+}
+
+/* CONTACT BOX */
+.contact-box {
+  background: var(--surface); border: 1px solid var(--border2);
+  padding: 1.5rem 2rem; margin-top: 1rem;
+}
+.contact-box p { margin: 0; font-size: .85rem; color: var(--text2); }
+.contact-box strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Fittest<span>4</span>Fit</a>
+  <a class="nav-back" href="index.html">← Volver al inicio</a>
+</nav>
+
+<div class="policy-wrap">
+
+  <div class="policy-header">
+    <span class="policy-tag">Legal · Privacidad</span>
+    <h1 class="policy-title">Política de<br><em>Cookies</em></h1>
+    <div class="gold-line"></div>
+    <span class="policy-date">Última actualización: junio 2025</span>
+  </div>
+
+  <div class="policy-section">
+    <h2>¿Qué son las cookies?</h2>
+    <p>Las cookies son pequeños archivos de texto que los sitios web almacenan en tu dispositivo cuando los visitas. Permiten que el sitio recuerde tus preferencias, analice cómo se usa y muestre publicidad relevante.</p>
+    <p>Este sitio, <strong>fittest4fit.com</strong>, es titularidad de Hernán Schneider. Cumplimos con el Reglamento General de Protección de Datos (RGPD) de la UE y la Ley Orgánica de Protección de Datos española (LOPDGDD).</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Cookies que utilizamos</h2>
+
+    <h3>Esenciales — siempre activas</h3>
+    <p>Necesarias para el funcionamiento básico del sitio. No pueden desactivarse.</p>
+    <table class="cookie-table">
+      <tr>
+        <th>Cookie</th>
+        <th>Proveedor</th>
+        <th>Finalidad</th>
+        <th>Duración</th>
+        <th>Tipo</th>
+      </tr>
+      <tr>
+        <td>f4f_cookies_v1</td>
+        <td>Fittest4Fit</td>
+        <td>Guarda tus preferencias de cookies</td>
+        <td>1 año</td>
+        <td><span class="badge badge-essential">Esencial</span></td>
+      </tr>
+      <tr>
+        <td>ml_*</td>
+        <td>MailerLite</td>
+        <td>Procesa el formulario de descarga del libro</td>
+        <td>Sesión</td>
+        <td><span class="badge badge-essential">Esencial</span></td>
+      </tr>
+    </table>
+
+    <h3>Marketing — requieren consentimiento</h3>
+    <p>Solo se cargan si aceptas esta categoría. Permiten medir la eficacia de nuestras campañas publicitarias en Instagram y Google.</p>
+    <table class="cookie-table">
+      <tr>
+        <th>Cookie</th>
+        <th>Proveedor</th>
+        <th>Finalidad</th>
+        <th>Duración</th>
+        <th>Tipo</th>
+      </tr>
+      <tr>
+        <td>_fbp, _fbc</td>
+        <td>Meta (Facebook/Instagram)</td>
+        <td>Mide conversiones de anuncios en Instagram y Facebook. Permite remarketing.</td>
+        <td>90 días</td>
+        <td><span class="badge badge-marketing">Marketing</span></td>
+      </tr>
+      <tr>
+        <td>_gcl_*, _gads</td>
+        <td>Google Ads</td>
+        <td>Mide conversiones de anuncios en Google Search y Display. Permite remarketing.</td>
+        <td>90 días</td>
+        <td><span class="badge badge-marketing">Marketing</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="policy-section">
+    <h2>Cookies de terceros incluidas por defecto</h2>
+    <p>Independientemente de tu elección de marketing, el sitio carga las siguientes fuentes externas necesarias para su visualización correcta:</p>
+    <table class="cookie-table">
+      <tr>
+        <th>Servicio</th>
+        <th>Proveedor</th>
+        <th>Finalidad</th>
+      </tr>
+      <tr>
+        <td>Google Fonts</td>
+        <td>Google LLC</td>
+        <td>Carga de tipografías (DM Serif Display, Outfit, DM Mono). Google puede recibir tu IP.</td>
+      </tr>
+    </table>
+    <p>Si deseas evitar completamente el envío de datos a Google Fonts, puedes bloquearlos desde las herramientas de tu navegador o usar una extensión de privacidad.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Cómo gestionar tus preferencias</h2>
+    <p>Puedes cambiar tus preferencias en cualquier momento haciendo clic en <strong>"Política de cookies"</strong> en el pie de página del sitio, o borrando las cookies de tu navegador (esto restablece tus preferencias a "solo esenciales").</p>
+    <p>También puedes gestionar las cookies directamente desde tu navegador:</p>
+    <p>
+      <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a> ·
+      <a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener">Firefox</a> ·
+      <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a> ·
+      <a href="https://support.microsoft.com/es-es/windows/eliminar-y-administrar-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener">Edge</a>
+    </p>
+    <p>Para excluirte del seguimiento de Meta: <a href="https://www.facebook.com/privacy/explanation" target="_blank" rel="noopener">Centro de privacidad de Meta →</a></p>
+    <p>Para excluirte del seguimiento de Google Ads: <a href="https://adssettings.google.com" target="_blank" rel="noopener">Configuración de anuncios de Google →</a></p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Base legal</h2>
+    <p>El tratamiento de datos mediante cookies de marketing se basa en tu <strong>consentimiento</strong> (Art. 6.1.a RGPD). Las cookies esenciales se basan en el <strong>interés legítimo</strong> para el funcionamiento del servicio (Art. 6.1.f RGPD).</p>
+    <p>Puedes retirar tu consentimiento en cualquier momento sin que ello afecte a la licitud del tratamiento previo.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Contacto</h2>
+    <p>Para cualquier consulta sobre esta política o el ejercicio de tus derechos (acceso, rectificación, supresión, portabilidad, oposición):</p>
+    <div class="contact-box">
+      <p><strong>Hernán Schneider · Fittest4Fit</strong><br>
+      Email: <a href="mailto:info@fittest4fit.com">info@fittest4fit.com</a><br>
+      Instagram: <a href="https://instagram.com/fittest4fit" target="_blank" rel="noopener">@fittest4fit</a></p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /Premium_Access.html
+Disallow: /premium-access.html
 
 Sitemap: https://fittest4fit.com/sitemap.xml

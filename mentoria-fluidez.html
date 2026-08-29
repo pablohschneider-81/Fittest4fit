@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="es" style="background:#04101F"><head><style>
+<!DOCTYPE html><html lang="es-ES" style="background:#04101F"><head>
+<style>
+.progress-line{position:fixed;left:0;top:0;height:2px;width:0%;background:linear-gradient(90deg,#00C2FF,#FFB830);z-index:500;transition:width .06s linear}
+</style><style>
 @media (max-width:760px){.nav-links{display:none!important}nav{padding-left:1.2rem!important;padding-right:1.2rem!important}}
 
 @media (max-width:680px){.rg-mobile{grid-template-columns:1fr !important}}
@@ -254,10 +257,12 @@
 <meta name="twitter:description" content="Mentoría de natación 1:1 online: análisis de video de tu nado, diagnóstico técnico y acompañamiento semana a semana con Hernán Schneider.">
 <meta name="twitter:image" content="https://fittest4fit.com/og/mentoria-fluidez.jpg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Mentoría Fluidez","description":"Mentoría de natación 1:1 online: análisis de video de tu nado, diagnóstico técnico y acompañamiento semana a semana con Hernán Schneider.","provider":{"@type":"Person","name":"Hernán Schneider"},"url":"https://fittest4fit.com/mentoria-fluidez.html"}
+{"@context":"https://schema.org","@type":"Service","name":"Mentoría Fluidez","description":"Mentoría de natación 1:1 online: análisis de video de tu nado, diagnóstico técnico y acompañamiento semana a semana con Hernán Schneider.","offers":[{"@type":"Offer","name":"Starter","price":"500","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://fittest4fit.com/mentoria-fluidez.html"},{"@type":"Offer","name":"Full","price":"1200","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://fittest4fit.com/mentoria-fluidez.html"}],"provider":{"@type":"Person","name":"Hernán Schneider"},"url":"https://fittest4fit.com/mentoria-fluidez.html"}
 </script>
 </head>
 <body style="background:#04101F">
+<div class="progress-line" id="progressLine"></div>
+
 <div id="dc-root"><div class="sc-host" data-sc-name="mentoria-fluidez"><div data-dc-tpl="5" style="position: relative; background: rgb(4, 16, 31); font-family: Outfit, sans-serif; color: rgb(240, 244, 248); overflow-x: hidden;">
   <div data-dc-tpl="6" style="position: fixed; inset: 0px; z-index: 0; pointer-events: none; background: radial-gradient(900px 600px at 78% 10%, rgba(0, 194, 255, 0.08), transparent 60%), radial-gradient(700px 500px at 10% 85%, rgba(255, 184, 48, 0.07), transparent 60%);"></div>
 
@@ -776,14 +781,25 @@ class Component extends DCLogic {
 <footer style="display:block;position:relative;z-index:1;padding:40px 24px;text-align:center;background:#081828;border-top:1px solid #0d2540;font-family:'DM Mono',monospace">
   <div style="font-family:'DM Serif Display',serif;font-size:17px;color:#F0F4F8;margin-bottom:6px">Fittest<span style="color:#00C2FF">4</span>Fit</div>
   <div style="font-size:12px;color:#7a9ab8;margin-bottom:20px">© 2026 Fittest4Fit · Hernán Schneider · Sabadell, España</div>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;font-size:12px;letter-spacing:.04em">
-    <a href="index.html" style="color:#7a9ab8;text-decoration:none">Inicio</a>
-    <a href="formula.html" style="color:#7a9ab8;text-decoration:none">La Fórmula 21 Días</a>
-    <a href="neuroforce.html" style="color:#7a9ab8;text-decoration:none">NeuroForce™</a>
-    <a href="mentoria-fluidez.html" style="color:#7a9ab8;text-decoration:none">Mentoría Fluidez</a>
-    <a href="ondrift.html" style="color:#7a9ab8;text-decoration:none">Ondrift</a>
-    <a href="libro-gratis.html" style="color:#7a9ab8;text-decoration:none">Ebook gratis</a>
-    <a href="cookies.html" style="color:#3a5a7a;text-decoration:none">Política de cookies</a>
-    <a href="privacidad-datos.html" style="color:#3a5a7a;text-decoration:none">Política de privacidad</a>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;font-size:12px;letter-spacing:.04em">
+    <a href="index.html" style="color:#7a9ab8;text-decoration:none;padding:8px 4px;display:inline-block">Inicio</a>
+    <a href="formula.html" style="color:#7a9ab8;text-decoration:none;padding:8px 4px;display:inline-block">La Fórmula 21 Días</a>
+    <a href="neuroforce.html" style="color:#7a9ab8;text-decoration:none;padding:8px 4px;display:inline-block">NeuroForce™</a>
+    <a href="mentoria-fluidez.html" style="color:#7a9ab8;text-decoration:none;padding:8px 4px;display:inline-block">Mentoría Fluidez</a>
+    <a href="ondrift.html" style="color:#7a9ab8;text-decoration:none;padding:8px 4px;display:inline-block">Ondrift</a>
+    <a href="libro-gratis.html" style="color:#7a9ab8;text-decoration:none;padding:8px 4px;display:inline-block">Ebook gratis</a>
+    <a href="cookies.html" style="color:#3a5a7a;text-decoration:none;padding:8px 4px;display:inline-block">Política de cookies</a>
+    <a href="privacidad-datos.html" style="color:#3a5a7a;text-decoration:none;padding:8px 4px;display:inline-block">Política de privacidad</a>
   </div>
-</footer></body></html>
+</footer><script>
+(function(){
+  var progLine = document.getElementById('progressLine');
+  if(!progLine) return;
+  window.addEventListener('scroll', function() {
+    var total = document.body.scrollHeight - window.innerHeight;
+    if (total <= 0) return;
+    progLine.style.width = (window.scrollY / total * 100) + '%';
+  }, { passive: true });
+})();
+</script>
+</body></html>

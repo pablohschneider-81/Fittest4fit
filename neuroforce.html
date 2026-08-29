@@ -1,4 +1,7 @@
 <!DOCTYPE html><html lang="es-ES" style="background:#04101F"><head>
+<style>
+.progress-line{position:fixed;left:0;top:0;height:2px;width:0%;background:linear-gradient(90deg,#00C2FF,#FFB830);z-index:500;transition:width .06s linear}
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1224,6 +1227,8 @@ footer {
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿NeuroForce™ es para principiantes en el gimnasio?", "acceptedAnswer": {"@type": "Answer", "text": "No. Es un sistema avanzado — requiere base previa en entrenamiento de fuerza y apertura para integrar neurociencia aplicada a la programación."}}, {"@type": "Question", "name": "¿En qué se diferencia de un programa de fuerza tradicional?", "acceptedAnswer": {"@type": "Answer", "text": "Está construido sobre neurociencia del ejercicio aplicada (RFD, PAP, perfil F-V, French Contrast Method), con protocolos respaldados por literatura científica post-2006."}}, {"@type": "Question", "name": "¿Cómo está estructurado el programa?", "acceptedAnswer": {"@type": "Answer", "text": "14 semanas en 4 fases — Neural Prime, Force Integration, Pattern Transfer y AlphaReload — donde cada fase construye sobre la anterior."}}, {"@type": "Question", "name": "¿Incluye seguimiento personal o es solo contenido grabado?", "acceptedAnswer": {"@type": "Answer", "text": "Incluye seguimiento directo con Hernán Schneider durante el programa, además de los 6 módulos interactivos con diagramas y quiz."}}, {"@type": "Question", "name": "¿Es solo para nadadores?", "acceptedAnswer": {"@type": "Answer", "text": "El sistema nació aplicado a natación, pero también se adapta a triatlón, atletismo, deportes de equipo y de combate, y halterofilia/powerlifting."}}, {"@type": "Question", "name": "¿Puedo hablar con alguien antes de decidir?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Puedes completar el formulario de contacto y te responden en 24–48h para una llamada de 20 minutos sin compromiso."}}]}</script>
 </head>
 <body style="background:#04101F">
+<div class="progress-line" id="progressLine"></div>
+
 
 <!-- SVG LIQUID FILTER (hidden, referenced via CSS filter) -->
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
@@ -1977,7 +1982,7 @@ footer {
     btn.textContent = 'Enviando…';
     btn.disabled = true;
     setTimeout(function() {
-      window.location.href = 'mailto:pablohschneider@gmail.com?subject=' + subject + '&body=' + body;
+      window.location.href = 'mailto:info@fittest4fit.com?subject=' + subject + '&body=' + body;
       btn.textContent = '✓ Solicitud enviada';
       btn.style.background = 'var(--green)';
     }, 600);
@@ -2038,4 +2043,15 @@ footer {
     <a href="cookies.html" style="color:#3a5a7a;text-decoration:none">Política de cookies</a>
     <a href="privacidad-datos.html" style="color:#3a5a7a;text-decoration:none">Política de privacidad</a>
   </div>
-</footer></body></html>
+</footer><script>
+(function(){
+  var progLine = document.getElementById('progressLine');
+  if(!progLine) return;
+  window.addEventListener('scroll', function() {
+    var total = document.body.scrollHeight - window.innerHeight;
+    if (total <= 0) return;
+    progLine.style.width = (window.scrollY / total * 100) + '%';
+  }, { passive: true });
+})();
+</script>
+</body></html>

@@ -442,6 +442,7 @@ section { position: relative; z-index: 1; }
    PROGRAMS SECTION
    ============================================================ */
 .programs-section { background: var(--bg2); border-top: 1px solid var(--border); }
+.programs-section .section-inner { overflow: hidden; }
 .prog-header { margin-bottom: 2.5rem; }
 .prog-title {
   font-family: 'DM Serif Display', serif;
@@ -483,7 +484,7 @@ section { position: relative; z-index: 1; }
 /* ============================================================
    PROGRAMS CAROUSEL (3D)
    ============================================================ */
-.pc-wrap { position: relative; }
+.pc-wrap { position: relative; overflow: hidden; }
 .pc-stage {
   position: relative; height: 580px; margin: 0 auto 2rem;
   display: flex; align-items: center; justify-content: center;

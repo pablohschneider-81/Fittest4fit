@@ -1649,9 +1649,10 @@ footer {
         var scale = absD === 0 ? 1 : absD === 1 ? scaleSide : scaleFar;
         var rot = d === 0 ? 0 : (d > 0 ? -10 : 10);
         var z = -absD * 90;
-        var opacity = absD > 1.4 ? 0 : 1;
+        var opacity = narrow ? (absD === 0 ? 1 : 0) : (absD > 1.4 ? 0 : 1);
         card.style.transform = 'translateX(' + tx + 'px) translateZ(' + z + 'px) rotateY(' + rot + 'deg) scale(' + scale + ')';
         card.style.opacity = opacity;
+        card.style.pointerEvents = opacity === 0 ? 'none' : '';
         card.style.zIndex = String(10 - absD);
         card.classList.toggle('is-current', d === 0);
       });

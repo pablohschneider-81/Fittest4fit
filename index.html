@@ -20,7 +20,9 @@
 </script>
 <meta name="twitter:title" content="Entrenamiento de Fuerza para Nadadores Online | Hernán Schneider" />
 <meta name="twitter:description" content="Programas online de preparación física específica para nadadores. Fuerza, potencia y rendimiento en el agua basados en evidencia científica." />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800;900&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
 <!-- MailerLite Universal -->
 <script>
@@ -1634,9 +1636,10 @@ footer {
     var nextBtn = document.getElementById('pcNext');
     var n = cards.length;
     var current = 0;
+    var vw = window.innerWidth;
 
     function layout() {
-      var narrow = window.innerWidth <= 640;
+      var narrow = vw <= 640;
       var step = narrow ? 150 : 230;
       var scaleSide = narrow ? .74 : .8;
       var scaleFar = .62;
@@ -1681,7 +1684,7 @@ footer {
       touchX = null;
     }, { passive: true });
 
-    window.addEventListener('resize', layout);
+    window.addEventListener('resize', function() { vw = window.innerWidth; layout(); });
     layout();
   })();
 

@@ -26,13 +26,24 @@
 
 <!-- MailerLite Universal -->
 <script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    (function(w,f){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};})(window,'ml');
     ml('account', '985838');
+    function loadMailerLite() {
+      if (window.__mlLoaded) return;
+      window.__mlLoaded = true;
+      var l = document.createElement('script');
+      l.async = 1;
+      l.src = 'https://assets.mailerlite.com/js/universal.js';
+      var n = document.getElementsByTagName('script')[0];
+      n.parentNode.insertBefore(l, n);
+    }
+    ['scroll','mousemove','touchstart','click','keydown'].forEach(function(evt){
+      window.addEventListener(evt, loadMailerLite, { once: true, passive: true });
+    });
+    setTimeout(loadMailerLite, 4000);
 </script>
 <!-- End MailerLite Universal -->
+
 
 <style>
 /* ============================================================

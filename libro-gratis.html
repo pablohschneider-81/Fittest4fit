@@ -190,6 +190,10 @@ h1 .accent{color:var(--gold);font-style:italic;}
 .ml-embed-wrap .ml-form-embedBody{padding:0!important;}
 .ml-embed-wrap .ml-form-embedContent{margin-bottom:1rem!important;}
 
+@media(max-width:879px){
+  .ml-embed-wrap .ml-form-embedHeader img{max-height:150px!important;width:100%!important;object-fit:cover!important;}
+}
+
 .trust{
   display:flex;
   align-items:center;
@@ -278,6 +282,22 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1394874288749580&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<!-- Lead tracking: MailerLite embed no expone evento propio; se detecta el cambio a su bloque de éxito -->
+<script>
+(function(){
+  var fired=false;
+  function checkLead(){
+    if(fired) return;
+    var el=document.querySelector('.ml-form-successBody');
+    if(el && getComputedStyle(el).display!=='none'){
+      fired=true;
+      if(window.fbq) fbq('track','Lead');
+    }
+  }
+  new MutationObserver(checkLead).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['style','class']});
+  checkLead();
+})();
+</script>
 </head>
 <body>
 

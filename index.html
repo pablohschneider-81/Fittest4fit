@@ -1096,7 +1096,7 @@ footer {
 <!-- COOKIE BANNER -->
 <div id="cookie-banner" role="dialog" aria-label="Preferencias de cookies">
   <div class="cookie-text">
-    <p>Usamos cookies propias y de terceros (Meta Pixel · Google Ads) para analizar el tráfico y mostrarte publicidad relevante. Puedes personalizar tu elección o aceptar todas. <a href="cookies.html">Política de cookies →</a> · <a href="privacidad-datos.html">Política de privacidad →</a></p>
+    <p>Usamos cookies propias y de terceros (Meta Pixel · Google Ads · Metricool) para analizar el tráfico y mostrarte publicidad relevante. Puedes personalizar tu elección o aceptar todas. <a href="cookies.html">Política de cookies →</a> · <a href="privacidad-datos.html">Política de privacidad →</a></p>
   </div>
   <div class="cookie-toggles">
     <div class="cookie-toggle-row">
@@ -1110,6 +1110,10 @@ footer {
     <div class="cookie-toggle-row">
       <span class="cookie-toggle-label">Google Ads</span>
       <label class="toggle-switch"><input type="checkbox" id="toggle-google" aria-label="Google Ads"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="cookie-toggle-row">
+      <span class="cookie-toggle-label">Metricool (analítica)</span>
+      <label class="toggle-switch"><input type="checkbox" id="toggle-metricool" aria-label="Metricool"><span class="toggle-slider"></span></label>
     </div>
   </div>
   <div class="cookie-actions">
@@ -1913,8 +1917,9 @@ footer {
     var banner    = document.getElementById('cookie-banner');
     var btnAll    = document.getElementById('cookie-accept-all');
     var btnSave   = document.getElementById('cookie-save');
-    var toggleMeta   = document.getElementById('toggle-meta');
-    var toggleGoogle = document.getElementById('toggle-google');
+    var toggleMeta      = document.getElementById('toggle-meta');
+    var toggleGoogle    = document.getElementById('toggle-google');
+    var toggleMetricool = document.getElementById('toggle-metricool');
 
     function loadMetaPixel() {
       var META_PIXEL_ID = '1394874288749580';
@@ -1939,30 +1944,39 @@ footer {
       gtag('js', new Date());
       gtag('config', GOOGLE_ADS_ID);
     }
+    function loadMetricool() {
+      var img = document.createElement('img');
+      img.src = 'https://tracker.metricool.com/c3po.jpg?hash=809a6c3a43e2b1f527a9885070026d50';
+      img.style.display = 'none';
+      img.alt = '';
+      document.body.appendChild(img);
+    }
     function applyConsent(prefs) {
-      if (prefs.meta)   loadMetaPixel();
-      if (prefs.google) loadGoogleAds();
+      if (prefs.meta)      loadMetaPixel();
+      if (prefs.google)    loadGoogleAds();
+      if (prefs.metricool) loadMetricool();
     }
     function saveAndClose(prefs) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ ts: Date.now(), meta: prefs.meta, google: prefs.google }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ ts: Date.now(), meta: prefs.meta, google: prefs.google, metricool: prefs.metricool }));
       banner.classList.remove('visible');
       applyConsent(prefs);
     }
     var saved = null;
     try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e) {}
     if (saved) {
-      if (saved.meta)   toggleMeta.checked   = true;
-      if (saved.google) toggleGoogle.checked = true;
+      if (saved.meta)      toggleMeta.checked      = true;
+      if (saved.google)    toggleGoogle.checked    = true;
+      if (saved.metricool) toggleMetricool.checked = true;
       applyConsent(saved);
     } else {
       setTimeout(function() { banner.classList.add('visible'); }, 3600);
     }
     btnAll.addEventListener('click', function() {
-      toggleMeta.checked = true; toggleGoogle.checked = true;
-      saveAndClose({ meta: true, google: true });
+      toggleMeta.checked = true; toggleGoogle.checked = true; toggleMetricool.checked = true;
+      saveAndClose({ meta: true, google: true, metricool: true });
     });
     btnSave.addEventListener('click', function() {
-      saveAndClose({ meta: toggleMeta.checked, google: toggleGoogle.checked });
+      saveAndClose({ meta: toggleMeta.checked, google: toggleGoogle.checked, metricool: toggleMetricool.checked });
     });
   })();
 
@@ -2180,6 +2194,5 @@ footer {
 })();
 </script>
 
-<img src="https://tracker.metricool.com/c3po.jpg?hash=809a6c3a43e2b1f527a9885070026d50" style="display:none" alt=""/>
 </body>
 </html>

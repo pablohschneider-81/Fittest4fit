@@ -623,7 +623,10 @@ function sendToSheet(res){
     sintoma: res.sintoma, plan: res.plan, fuerza: res.fuerza, nivel: res.lvl, urgencia: res.urgencia,
     perfil_tecnico: res.profile, temp_web: res.temp,
     angulo: q.get('a') || '', utm_source: q.get('utm_source') || '', utm_medium: q.get('utm_medium') || '', utm_campaign: q.get('utm_campaign') || '',
-    consentimiento: true
+    consentimiento: true,
+    event_id: res.eid, ua: navigator.userAgent,
+    fbp: (document.cookie.match(/(?:^|; )_fbp=([^;]*)/) || [])[1] || '',
+    fbc: (document.cookie.match(/(?:^|; )_fbc=([^;]*)/) || [])[1] || (q.get('fbclid') ? 'fb.1.' + Date.now() + '.' + q.get('fbclid') : '')
   };
   try {
     fetch(CFG.SHEETS_URL, { method: 'POST', mode: 'no-cors', keepalive: true,
@@ -647,11 +650,12 @@ $('#form').addEventListener('submit', function(e){
   var res = analyse();
   if ($('#f-hp').value) return showResult(res, 'sent');   // bot: no se envía nada
   btn.disabled = true; btn.textContent = 'Enviando…';
+  res.eid = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
   sendToSheet(res);
   subscribe(res).then(function(r){
     btn.disabled = false; btn.textContent = 'Ver mi valoración →';
     if (!r.ok && r.emailError) return fail('MailerLite no acepta ese email. Revísalo.', emailI);
-    if (window.fbq){ try { window.fbq('track', 'Lead', { content_name: 'test-valoracion' }); } catch (_) {} }
+    if (window.fbq){ try { window.fbq('track', 'Lead', { content_name: 'test-valoracion' }, { eventID: res.eid }); } catch (_) {} }
     showResult(res, r.ok ? 'sent' : 'failed');
   });
 });

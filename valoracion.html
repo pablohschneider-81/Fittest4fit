@@ -273,7 +273,8 @@ var CFG = {
   INSTAGRAM_URL: 'https://www.instagram.com/fittest4fit/',
   SHEETS_URL: 'https://script.google.com/macros/s/AKfycbwpqRM-BNJP2QSNQSCDJ-1fU92Hdksf_Cr9-cS3vFRf64Eruk_4UNbwmQ-Lh0IenV6_1A/exec',     // URL de la app web de Apps Script (termina en /exec). Vacío = no envía a la hoja
   SHEETS_TOKEN: 'f4f-wXtkc77iH7kUnyierFQWBZBe',   // mismo valor que TESTWEB.TOKEN en el script (es solo un freno, va visible en la página)
-  PRIVACY_URL: '/privacidad-datos.html'
+  PRIVACY_URL: '/privacidad-datos.html',
+  CAL_LINK: 'hernan-schneider-lqpucs/valoracion'   // Cal.com: usuario/evento (si cambias el usuario en Cal, cámbialo aquí)
 };
 
 
@@ -671,6 +672,19 @@ function backToIntro(){
   show('intro', '#t-intro');
 }
 
+/* ---------- Cal.com: popup de reserva (carga el script solo al pulsar; si falla, el enlace abre Cal en otra pestaña) ---------- */
+function openCal(e){
+  try {
+    if (!window.Cal){
+      (function(C,A,L){var p=function(a,ar){a.q.push(ar);},d=C.document;C.Cal=C.Cal||function(){var cal=C.Cal,ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement('script')).src=A;cal.loaded=true;}if(ar[0]===L){var api=function(){p(api,arguments);},namespace=ar[1];api.q=api.q||[];if(typeof namespace==='string'){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,['initNamespace',namespace]);}else p(cal,ar);return;}p(cal,ar);};})(window,'https://app.cal.com/embed/embed.js','init');
+      window.Cal('init',{origin:'https://app.cal.com'});
+    }
+    window.Cal('modal',{calLink:CFG.CAL_LINK,config:{layout:'month_view'}});
+    if (window.fbq){ try { window.fbq('trackCustom','CalClick'); } catch (_) {} }
+    e.preventDefault();
+  } catch (_) {}
+}
+
 /* ---------- Resultado ---------- */
 function showResult(res, delivery){
   var P = PROFILES[res.profile];
@@ -698,6 +712,7 @@ function showResult(res, delivery){
 
   var cta = pickCta(res);
   var ctaLink = h('a', { class: 'btn-primary', href: cta.href, text: cta.label });
+  var calBtn = h('a', { class: 'btn-primary', href: 'https://cal.com/' + CFG.CAL_LINK, target: '_blank', rel: 'noopener', text: 'Reservar mi valoración gratuita (20 min) →', onclick: openCal });
 
   var dl = h('a', { href: CFG.EBOOK_URL, text: delivery === 'sent' ? 'Descárgalo ahora' : 'Descargar «Natación sin esfuerzo»' });
   var ebook;
@@ -730,7 +745,8 @@ function showResult(res, delivery){
     h('div', { class: 'cta-block' },
       h('span', { class: 'section-tag', text: 'Siguiente paso' }),
       h('p', { class: 'cta-p', text: cta.p }),
-      ctaLink),
+      ctaLink,
+      h('div', { style: 'margin-top:.9rem' }, calBtn)),
     ebook,
     h('div', { class: 'foot' },
       h('button', { type: 'button', class: 'linkbtn', onclick: restart, text: 'Repetir el test' }),

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de cookies — Ondrift</title>
-<meta name="description" content="Política de cookies de Ondrift: qué almacenamiento usan la página informativa y la aplicación, y para qué.">
+<meta name="description" content="Política de cookies de Ondrift: qué guarda la app en tu navegador, para qué, cuánto dura y cómo borrarlo.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://fittest4fit.com/ondrift-cookies.html">
 <meta name="theme-color" content="#eef3fb">
@@ -57,7 +57,13 @@ footer nav a:hover{color:var(--ink);text-decoration:underline}
 footer nav a[aria-current]{color:var(--ink);font-weight:600}
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
 .table-wrap{overflow-x:auto;margin:0 0 16px;-webkit-overflow-scrolling:touch}
-.table-wrap table{min-width:560px;margin:0}
+.table-wrap table{min-width:620px;margin:0}
+code{font:500 13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:rgba(12,26,46,.06);border-radius:6px;padding:2px 6px;color:var(--ink);white-space:nowrap}
+.tldr{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 22px}
+.tldr div{border-radius:16px;padding:16px 18px;background:rgba(255,255,255,.75);border:1px solid #fff}
+.tldr b{display:block;font:800 1.6rem/1 var(--display);letter-spacing:-.02em;color:var(--ink);margin-bottom:6px}
+.tldr span{font-size:14px;color:var(--ink-2);line-height:1.45;display:block}
+@media (max-width:640px){.tldr{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -69,19 +75,76 @@ footer nav a[aria-current]{color:var(--ink);font-weight:600}
 <article class="doc">
 <span class="eyebrow">Legal</span>
 <h1>Política de cookies de Ondrift</h1>
-<p class="upd">Última actualización: septiembre de 2026</p>
-<div class="box"><p style="margin:0">Ondrift son dos cosas distintas a efectos de cookies: esta página informativa (donde estás ahora) y la aplicación en <a href="https://ondrift.app">ondrift.app</a>. Cada una funciona distinto.</p></div>
+<p class="upd">Última actualización: octubre de 2026</p>
 
-      <h2>Esta página (fittest4fit.com/ondrift.html)</h2>
-      <p>Es una página informativa estática. No instala cookies de analítica, publicidad ni seguimiento. Los botones de contacto abren tu programa de correo (mailto) y no registran datos de navegación.</p>
+<div class="tldr">
+  <div><b>0</b><span>cookies de publicidad o de seguimiento entre sitios</span></div>
+  <div><b>0</b><span>herramientas de analítica de terceros (Google Analytics, Meta…)</span></div>
+  <div><b>Sin banner</b><span>solo usamos almacenamiento técnico necesario, que no requiere consentimiento</span></div>
+</div>
 
-      <h2>La aplicación (ondrift.app)</h2>
-      <p>Ondrift requiere iniciar sesión para funcionar. Para mantenerte conectado usamos almacenamiento técnico necesario (gestionado por nuestro proveedor de autenticación, Supabase) que guarda tu sesión en tu propio navegador o dispositivo. No es una cookie de seguimiento ni de publicidad: sirve únicamente para que no tengas que volver a iniciar sesión en cada visita, y se borra al cerrar sesión.</p>
-      <p>Dentro de la app registramos analítica de producto propia (inicio de sesión, pantallas vistas, errores técnicos) para detectar fallos y mejorar la aplicación. Estos datos quedan en nuestra base de datos, no se comparten con redes publicitarias ni con terceros ajenos a Ondrift.</p>
-      <p>A diferencia de otras páginas de fittest4fit.com, que sí usan cookies de marketing (Meta, Google Ads, MailerLite) para captar interesados, dentro de la aplicación Ondrift no se usa ninguna cookie publicitaria ni de seguimiento entre sitios.</p>
+<h2>1. Qué son las cookies y tecnologías similares</h2>
+<p>Las cookies son pequeños archivos que una web guarda en tu navegador. Esta política cubre también tecnologías parecidas, como el <strong>almacenamiento local</strong> del navegador (<em>localStorage</em>), que es lo que usa Ondrift. A efectos legales se tratan igual que las cookies (artículo 22.2 de la LSSI-CE).</p>
 
-      <h2>Contacto</h2>
-      <p>Cualquier duda sobre esta política: <a href="mailto:info@fittest4fit.com">info@fittest4fit.com</a></p>
+<h2>2. Quién es el responsable</h2>
+<p>Ondrift, un servicio de Fittest4Fit (Hernán Schneider). Contacto: <a href="mailto:info@fittest4fit.com">info@fittest4fit.com</a>. Los datos del titular están en el <a href="aviso-legal.html">Aviso legal</a>.</p>
+
+<h2>3. La página informativa (fittest4fit.com/ondrift.html)</h2>
+<p>Esta página y las páginas legales de Ondrift <strong>no instalan cookies ni guardan nada en tu navegador</strong>. Los botones de contacto abren tu programa de correo.</p>
+<p>Para mostrar la tipografía, la página carga fuentes de <strong>Google Fonts</strong>. Al hacerlo, tu navegador se conecta a servidores de Google, que reciben tu dirección IP. Google Fonts no instala cookies. Más información en la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.</p>
+
+<h2>4. La aplicación (ondrift.app)</h2>
+<p>La aplicación <strong>no usa cookies</strong>. Guarda en el almacenamiento local de tu navegador lo imprescindible para funcionar. Todo es <strong>propio</strong> (lo lee solo Ondrift) y <strong>técnico</strong>: sin él no podrías iniciar sesión ni registrar tu RPE.</p>
+<div class="table-wrap">
+<table>
+<tr><th>Nombre</th><th>Para qué sirve</th><th>Cuánto dura</th></tr>
+<tr><td><code>ondrift_sb_token</code></td><td>Mantener tu sesión iniciada.</td><td>Hasta que cierras sesión</td></tr>
+<tr><td><code>ondrift_sb_refresh</code></td><td>Renovar la sesión cuando caduca, sin volver a pedir contraseña o PIN.</td><td>Hasta que cierras sesión</td></tr>
+<tr><td><code>ondrift_athlete</code></td><td>Recordar qué nadador eres en este dispositivo, para entrar solo con tu PIN.</td><td>Hasta que cierras sesión</td></tr>
+<tr><td><code>ondrift_team_code</code></td><td>Recordar el código de tu equipo para no escribirlo cada vez.</td><td>Hasta que cambias de equipo o borras los datos del navegador</td></tr>
+<tr><td><code>cnt_rpe_queue</code></td><td>Guardar el RPE que registras sin conexión y enviarlo en cuanto vuelve la red.</td><td>Hasta que se envía</td></tr>
+<tr><td><code>ondrift_build_hash</code></td><td>Detectar que hay una versión nueva de la app y cargarla.</td><td>Hasta que borras los datos del navegador</td></tr>
+<tr><td><code>ondrift_changelog_seen</code></td><td>Recordar qué novedades ya viste, para no repetirlas.</td><td>Hasta que borras los datos del navegador</td></tr>
+<tr><td><code>ondrift_survey_snooze_…</code></td><td>Recordar que pospusiste una encuesta, para no volver a mostrarla enseguida.</td><td>3 días</td></tr>
+</table>
+</div>
+<p><strong>Base legal:</strong> son elementos estrictamente necesarios para prestar el servicio que has pedido, por lo que no requieren consentimiento (artículo 22.2 de la LSSI-CE). Por eso la app no muestra un banner de cookies.</p>
+
+<h2>5. Analítica de producto propia</h2>
+<p>Dentro de la app registramos eventos de uso (pantallas que visitas, inicios de sesión, errores técnicos y clics repetidos sobre algo que no responde) para detectar fallos y mejorar la aplicación. Estos eventos <strong>no se guardan en tu navegador</strong>: se envían a nuestra base de datos y pueden asociarse a tu cuenta. No se comparten con redes publicitarias ni con terceros. Su tratamiento se explica en la <a href="privacidad-datos.html">Política de privacidad</a>.</p>
+
+<h2>6. Servicios de terceros que se cargan en la app</h2>
+<div class="table-wrap">
+<table>
+<tr><th>Servicio</th><th>Para qué</th><th>Qué recibe</th></tr>
+<tr><td>Supabase (UE, Irlanda)</td><td>Base de datos e inicio de sesión</td><td>Los datos de tu cuenta, como encargado del tratamiento</td></tr>
+<tr><td>Google Fonts</td><td>Tipografía</td><td>Tu dirección IP. No instala cookies</td></tr>
+<tr><td>cdnjs (Cloudflare)</td><td>Librería para generar archivos Excel</td><td>Tu dirección IP. No instala cookies</td></tr>
+<tr><td>Google (solo si eliges «Registrarme con Google»)</td><td>Iniciar sesión con tu cuenta de Google</td><td>Google usa sus propias cookies en su página de acceso, según su <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">política de cookies</a></td></tr>
+</table>
+</div>
+
+<h2>7. Cómo borrar o bloquear este almacenamiento</h2>
+<ul>
+<li><strong>Cerrar sesión</strong> en la app borra la sesión y el nadador recordado de ese dispositivo.</li>
+<li>Para borrarlo todo, elimina los datos del sitio desde tu navegador:
+  <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a> ·
+  <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari en Mac</a> ·
+  <a href="https://support.apple.com/es-es/HT201265" target="_blank" rel="noopener">Safari en iPhone</a> ·
+  <a href="https://support.mozilla.org/es/kb/limpia-cookies-y-datos-de-sitios-en-firefox" target="_blank" rel="noopener">Firefox</a> ·
+  <a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Edge</a>.</li>
+<li>Si bloqueas el almacenamiento local, la app no podrá mantener tu sesión y tendrás que entrar cada vez.</li>
+</ul>
+
+<h2>8. Otras páginas de fittest4fit.com</h2>
+<p>El resto de fittest4fit.com (cursos, NeuroForce, mentoría) usa MailerLite para sus formularios y, si las aceptas en su banner, cookies de marketing y analítica (Meta, Google Ads, Metricool). Se explican en la <a href="cookies.html">Política de cookies de fittest4fit.com</a>. Nada de eso se carga en Ondrift.</p>
+
+<h2>9. Cambios en esta política</h2>
+<p>Si Ondrift empieza a usar cookies o almacenamiento nuevos, actualizaremos esta página y la fecha de arriba. Si alguno necesitara tu consentimiento, te lo pediremos antes de usarlo.</p>
+
+<h2>Contacto</h2>
+<p>Cualquier duda sobre esta política: <a href="mailto:info@fittest4fit.com">info@fittest4fit.com</a>.</p>
+
 </article>
 </main>
 <footer>

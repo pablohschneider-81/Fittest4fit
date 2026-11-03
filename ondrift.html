@@ -23,7 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/ondrift/atleta-inicio.webp" type="image/webp">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ondrift","operatingSystem":"Web, iOS, Android","description":"Planificación, RPE, carga y ACWR, fuerza e inscripciones a competiciones para clubes de natación.","applicationCategory":"SportsApplication","url":"https://fittest4fit.com/ondrift.html","offers":{"@type":"AggregateOffer","priceCurrency":"EUR","lowPrice":"25","highPrice":"150","offerCount":"3"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ondrift","operatingSystem":"Web, iOS, Android","description":"Planificación, RPE, carga y ACWR, fuerza e inscripciones a competiciones para clubes de natación.","applicationCategory":"SportsApplication","url":"https://fittest4fit.com/ondrift.html","offers":{"@type":"AggregateOffer","priceCurrency":"EUR","lowPrice":"25","highPrice":"150","offerCount":"4"}}
 </script>
 <style>
 :root{
@@ -211,7 +211,7 @@ section{padding:clamp(72px,11vw,128px) 0}
 .billing button[aria-pressed="true"]{color:var(--ink)}
 .billing__save{display:inline-block;margin-left:6px;padding:4px 8px;border-radius:999px;background:rgba(47,143,78,.14);color:var(--green);font-size:12px}
 .billing__pill{position:absolute;z-index:0;top:5px;bottom:5px;left:5px;border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(27,58,140,.14);transition:transform 260ms var(--ease-out),width 260ms var(--ease-out)}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;text-align:left;max-width:1000px;margin-left:auto;margin-right:auto}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;text-align:left}
 .plan{padding:30px 26px;display:flex;flex-direction:column;position:relative}
 .plan--feat{background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(206,248,250,.85));border-color:#fff;box-shadow:var(--shadow-lg)}
 .plan__badge{position:absolute;top:-12px;left:26px;padding:6px 12px;border-radius:999px;background:var(--blue);color:#fff;font:600 12px/1 var(--font);letter-spacing:.04em}
@@ -229,7 +229,8 @@ section{padding:clamp(72px,11vw,128px) 0}
 .plan .btn{width:100%}
 .plans__foot{margin-top:28px;color:var(--ink-2);font-size:15px}
 .plans__foot a{color:var(--blue);font-weight:600}
-@media (max-width:900px){.plans{grid-template-columns:1fr;max-width:460px}}
+@media (max-width:1060px){.plans{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.plans{grid-template-columns:1fr}}
 @media (max-width:600px){.plans{grid-template-columns:1fr}}
 
 /* Ciencia */
@@ -486,13 +487,21 @@ footer{padding:56px 0 40px;border-top:1px solid var(--hair);margin-top:clamp(72p
       </div>
       <div class="plan glass" data-reveal style="--d:60ms">
         <span class="plan__badge" style="background:#2f8f4e">Descuento de grupo</span>
+        <div class="plan__name">Dúo</div><div class="plan__who">2 entrenadores juntos</div>
+        <div class="plan__price"><span class="plan__amount" data-m="40" data-y="33,33">40</span><span class="plan__per" data-m="€/mes" data-y="€/mes">€/mes</span></div>
+        <div class="plan__eq" data-m="20 € por entrenador en vez de 25 €" data-y="Pago anual de 400 €">20 € por entrenador en vez de 25 €</div>
+        <ul><li>2 cuentas Individual, una por entrenador</li><li>Hasta 25 nadadores cada uno</li><li>Un solo pago para los dos</li></ul>
+        <a class="btn btn--ghost" href="mailto:info@fittest4fit.com?subject=Ondrift%20-%20Plan%20D%C3%BAo%20(2%20entrenadores)">Pedir el Dúo</a>
+      </div>
+      <div class="plan glass" data-reveal style="--d:120ms">
+        <span class="plan__badge" style="background:#2f8f4e">Descuento de grupo</span>
         <div class="plan__name">Grupo de 4</div><div class="plan__who">4 entrenadores juntos</div>
-        <div class="plan__price"><span class="plan__amount" data-m="79" data-y="65,83">79</span><span class="plan__per" data-m="€/mes" data-y="€/mes">€/mes</span></div>
-        <div class="plan__eq" data-m="19,75 € por entrenador en vez de 25 €" data-y="Pago anual de 790 €">19,75 € por entrenador en vez de 25 €</div>
+        <div class="plan__price"><span class="plan__amount" data-m="70" data-y="58,33">70</span><span class="plan__per" data-m="€/mes" data-y="€/mes">€/mes</span></div>
+        <div class="plan__eq" data-m="17,50 € por entrenador en vez de 25 €" data-y="Pago anual de 700 €">17,50 € por entrenador en vez de 25 €</div>
         <ul><li>4 cuentas Individual, una por entrenador</li><li>Hasta 25 nadadores cada uno</li><li>Un solo pago para los cuatro</li></ul>
         <a class="btn btn--ghost" href="mailto:info@fittest4fit.com?subject=Ondrift%20-%20Descuento%20de%20grupo%20(4%20entrenadores)">Pedir el descuento</a>
       </div>
-      <div class="plan glass" data-reveal style="--d:120ms">
+      <div class="plan glass" data-reveal style="--d:180ms">
         <span class="plan__badge" style="background:#1b3a8c">A medida</span>
         <div class="plan__name">Club</div><div class="plan__who">Más de 4 entrenadores</div>
         <div class="plan__price"><span class="plan__from">desde</span><span class="plan__amount" data-m="150" data-y="125">150</span><span class="plan__per" data-m="€/mes" data-y="€/mes">€/mes</span></div>
@@ -527,8 +536,8 @@ footer{padding:56px 0 40px;border-top:1px solid var(--hair);margin-top:clamp(72p
     <div class="center"><span class="eyebrow" data-reveal>Preguntas frecuentes</span><h2 data-reveal>¿Qué más necesitas saber?</h2></div>
     <div class="faq">
       <details class="glass" data-reveal><summary>¿Puedo probarlo antes de dejar el Excel?</summary><p>Sí. Tienes 15 días de prueba gratuita, sin permanencia, con hasta 3 nadadores: suficiente para ver cómo funciona con tu equipo antes de decidir.</p></details>
-      <details class="glass" data-reveal><summary>¿Cuántos nadadores caben en cada plan?</summary><p>Hasta 25 por cada entrenador. Un Grupo de 4 son 4 cuentas de 25 nadadores cada una, y un Club llega hasta 250.</p></details>
-      <details class="glass" data-reveal><summary>¿Cada entrenador necesita su propia cuenta?</summary><p>Sí, cada entrenador tiene la suya. Si sois 4, el descuento de grupo os sale a 19,75 € por entrenador; para clubes de más de 4, escríbenos y lo gestionamos juntos.</p></details>
+      <details class="glass" data-reveal><summary>¿Cuántos nadadores caben en cada plan?</summary><p>Hasta 25 por cada entrenador. El Dúo son 2 cuentas de 25 nadadores, el Grupo de 4 son 4 cuentas de 25, y un Club llega hasta 250.</p></details>
+      <details class="glass" data-reveal><summary>¿Cada entrenador necesita su propia cuenta?</summary><p>Sí, cada entrenador tiene la suya. Si sois 2, el Dúo os sale a 20 € por entrenador; si sois 4, a 17,50 €. Para clubes de más de 4, escríbenos y lo gestionamos juntos.</p></details>
       <details class="glass" data-reveal><summary>¿Los nadadores tienen que pagar o instalar algo?</summary><p>No. Paga el entrenador o el club. Los nadadores entran gratis con el código del equipo la primera vez y después con su PIN, desde el navegador del móvil.</p></details>
       <details class="glass" data-reveal><summary>¿Ondrift predice lesiones?</summary><p>No, y desconfía de quien te lo prometa. Ondrift cruza el RPE, la asistencia y el volumen de cada nadador y te muestra los picos de carga (ACWR) y la monotonía. Te da la señal pronto; la decisión es tuya.</p></details>
       <details class="glass" data-reveal><summary>¿Qué ventaja tiene el pago anual?</summary><p>Pagas 10 meses y tienes 12. Los precios que ves son el precio final.</p></details>
@@ -618,8 +627,8 @@ footer{padding:56px 0 40px;border-top:1px solid var(--hair);margin-top:clamp(72p
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"¿Puedo probarlo antes de dejar el Excel?","acceptedAnswer":{"@type":"Answer","text":"Sí. Tienes 15 días de prueba gratuita, sin permanencia, con hasta 3 nadadores: suficiente para ver cómo funciona con tu equipo antes de decidir."}},
-{"@type":"Question","name":"¿Cuántos nadadores caben en cada plan?","acceptedAnswer":{"@type":"Answer","text":"Hasta 25 por cada entrenador. Un Grupo de 4 son 4 cuentas de 25 nadadores cada una, y un Club llega hasta 250."}},
-{"@type":"Question","name":"¿Cada entrenador necesita su propia cuenta?","acceptedAnswer":{"@type":"Answer","text":"Sí, cada entrenador tiene la suya. Si sois 4, el descuento de grupo os sale a 19,75 € por entrenador; para clubes de más de 4, escríbenos y lo gestionamos juntos."}},
+{"@type":"Question","name":"¿Cuántos nadadores caben en cada plan?","acceptedAnswer":{"@type":"Answer","text":"Hasta 25 por cada entrenador. El Dúo son 2 cuentas de 25 nadadores, el Grupo de 4 son 4 cuentas de 25, y un Club llega hasta 250."}},
+{"@type":"Question","name":"¿Cada entrenador necesita su propia cuenta?","acceptedAnswer":{"@type":"Answer","text":"Sí, cada entrenador tiene la suya. Si sois 2, el Dúo os sale a 20 € por entrenador; si sois 4, a 17,50 €. Para clubes de más de 4, escríbenos y lo gestionamos juntos."}},
 {"@type":"Question","name":"¿Los nadadores tienen que pagar o instalar algo?","acceptedAnswer":{"@type":"Answer","text":"No. Paga el entrenador o el club. Los nadadores entran gratis con el código del equipo la primera vez y después con su PIN, desde el navegador del móvil."}},
 {"@type":"Question","name":"¿Ondrift predice lesiones?","acceptedAnswer":{"@type":"Answer","text":"No. Ondrift cruza el RPE, la asistencia y el volumen de cada nadador y muestra los picos de carga (ACWR) y la monotonía. Da la señal pronto; la decisión es del entrenador."}},
 {"@type":"Question","name":"¿Qué ventaja tiene el pago anual?","acceptedAnswer":{"@type":"Answer","text":"Pagas 10 meses y tienes 12. Los precios publicados son el precio final."}},

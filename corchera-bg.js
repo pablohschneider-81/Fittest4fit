@@ -64,7 +64,7 @@ const hubMat = new THREE.MeshPhysicalMaterial({ color:0xf4f7fb, roughness:0.3, c
 const coreGeo = new THREE.CylinderGeometry(0.035, 0.035, 1, 20, 1, true);
 const coreMat = new THREE.MeshStandardMaterial({ color:0xd9dee6, roughness:0.7 });
 
-const N = 30;
+const N = 60; // flotadores casi juntos, como una corchera real
 // Patrón de corchera real: tramos rojos en ambos extremos, bloques alternados en el centro
 const isRed = i => { const s = i/(N-1); if (s < 0.12 || s > 0.88) return true; return Math.floor((i - Math.ceil(N*0.12))/3) % 2 === 1; };
 const RED = new THREE.Color('#E4002B'), WHITE = new THREE.Color('#F4F7FB');
@@ -81,17 +81,29 @@ for (let i = 0; i < N; i++) { const c = isRed(i) ? RED : WHITE; bodyMesh.setColo
 const L = 22;
 const P = Array.from({length:N}, () => new THREE.Vector3());
 const tmp = new THREE.Vector3(), tan = new THREE.Vector3(), q = new THREE.Quaternion(), qSpin = new THREE.Quaternion(), M = new THREE.Matrix4(), S1 = new THREE.Vector3(1,1,1), SL = new THREE.Vector3();
+// Curva densa + reparto por longitud de arco: los flotadores quedan equiespaciados sobre la cuerda
+// aunque la ola la estire o la comprima (antes se repartían por x y se amontonaban en las crestas).
+const K = 320, C = Array.from({length:K}, () => new THREE.Vector3()), CUM = new Float32Array(K);
 function layout(t) {
-  for (let i = 0; i < N; i++) {
-    const s = i/(N-1), x = (s - 0.5)*L;
-    P[i].set(x, 0.42*Math.sin(x*0.55 - t*1.1) + 0.12*Math.sin(x*1.7 + t*0.8), 0.6*Math.sin(x*0.3 - t*0.5));
+  for (let k = 0; k < K; k++) {
+    const x = (k/(K-1) - 0.5)*L;
+    C[k].set(x, 0.42*Math.sin(x*0.55 - t*1.1) + 0.12*Math.sin(x*1.7 + t*0.8), 0.3*Math.sin(x*0.3 - t*0.5));
+    CUM[k] = k ? CUM[k-1] + C[k].distanceTo(C[k-1]) : 0;
   }
+  const total = CUM[K-1];
+  let j = 0;
   for (let i = 0; i < N; i++) {
-    tan.subVectors(P[Math.min(N-1,i+1)], P[Math.max(0,i-1)]).normalize();
+    const d = (i/(N-1))*total;
+    while (j < K-2 && CUM[j+1] < d) j++;
+    const f = (d - CUM[j])/Math.max(1e-6, CUM[j+1] - CUM[j]);
+    P[i].lerpVectors(C[j], C[j+1], f);
+    tan.subVectors(C[j+1], C[j]).normalize();
     q.setFromUnitVectors(up, tan); qSpin.setFromAxisAngle(up, i*0.9 + t*(0.35 + (i%3)*0.1)); q.multiply(qSpin);
     M.compose(P[i], q, S1); bodyMesh.setMatrixAt(i, M); plateMesh.setMatrixAt(i, M); hubMesh.setMatrixAt(i, M);
-    if (i < N-1) { tmp.subVectors(P[i+1], P[i]); const len = tmp.length(); q.setFromUnitVectors(up, tmp.normalize());
-      M.compose(tmp.addVectors(P[i], P[i+1]).multiplyScalar(0.5), q, SL.set(1, len, 1)); coreMesh.setMatrixAt(i, M); }
+  }
+  for (let i = 0; i < N-1; i++) {
+    tmp.subVectors(P[i+1], P[i]); const len = tmp.length(); q.setFromUnitVectors(up, tmp.normalize());
+    M.compose(tmp.addVectors(P[i], P[i+1]).multiplyScalar(0.5), q, SL.set(1, len, 1)); coreMesh.setMatrixAt(i, M);
   }
   bodyMesh.instanceMatrix.needsUpdate = plateMesh.instanceMatrix.needsUpdate = hubMesh.instanceMatrix.needsUpdate = coreMesh.instanceMatrix.needsUpdate = true;
 }

@@ -1079,6 +1079,16 @@ footer {
   .ch3-brand { font-size: clamp(2.8rem, 14vw, 4rem); }
 }
 </style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>
+/* === CORCHERA 3D: fondo fijo de las secciones bajo la portada === */
+#corcheraBg { position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0; transition:opacity .9s ease; }
+#corcheraBg.on { opacity:1; }
+#corcheraBg canvas { width:100%; height:100%; display:block; }
+/* las secciones pasan de opacas a velo translúcido para dejar ver la corchera */
+.programs-section, .bio-section, .gallery-section, .books-carousel-section { background: rgba(8,24,40,.80) !important; }
+.book-section, .method-section { background: rgba(4,16,31,.80) !important; }
+</style>
 </head>
 <body style="background:#04101F">
 
@@ -1158,6 +1168,7 @@ footer {
   <div class="chap-dot"></div>
 </div>
 
+<div id="corcheraBg" aria-hidden="true"></div>
 <!-- HERO SCROLL STAGE -->
 <div class="scroll-stage" id="scrollStage">
 <div class="sticky-wrap">
@@ -2194,5 +2205,6 @@ footer {
 })();
 </script>
 
+<script type="module" src="corchera-bg.js"></script>
 </body>
 </html>

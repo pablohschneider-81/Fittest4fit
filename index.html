@@ -1086,9 +1086,6 @@ footer {
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <style>
 /* === CORCHERA 3D: fondo fijo de las secciones bajo la portada === */
-#corcheraBg { position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0; transition:opacity .9s ease; }
-#corcheraBg.on { opacity:1; }
-#corcheraBg canvas { width:100%; height:100%; display:block; }
 /* las secciones comparten un único velo translúcido y sin líneas divisorias:
    se leen como un solo fondo continuo por donde pasa la corchera */
 .programs-section, .book-section, .bio-section, .method-section, .gallery-section, .books-carousel-section {
@@ -1175,7 +1172,7 @@ footer {
   <div class="chap-dot"></div>
 </div>
 
-<div id="corcheraBg" aria-hidden="true"></div>
+<div id="corcheraBg" data-after="#scrollStage" aria-hidden="true"></div>
 <!-- HERO SCROLL STAGE -->
 <div class="scroll-stage" id="scrollStage">
 <div class="sticky-wrap">

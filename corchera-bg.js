@@ -5,6 +5,49 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 
 const host = document.getElementById('corcheraBg');
+
+// ── Integración genérica en cualquier página F4F ─────────────────────────────
+// <div id="corcheraBg" data-after="SELECTOR"> : la corchera aparece cuando ese
+// bloque (la portada) ya pasó. Sin data-after se usa la primera <section>.
+let stage = null;
+const findStage = () => stage || (stage = host.dataset.after ? document.querySelector(host.dataset.after) : document.querySelector('section'));
+(() => {
+  const st = document.createElement('style');
+  st.textContent = `#corcheraBg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .9s ease}
+#corcheraBg.on{opacity:1}#corcheraBg canvas{width:100%;height:100%;display:block}`;
+  document.head.appendChild(st);
+  // El fondo de la página pasa al <html>; todo lo que envuelve al contenido queda
+  // transparente para que el canvas (z-index -1) se vea detrás.
+  const bodyBg = getComputedStyle(document.body).backgroundColor;
+  if (bodyBg && bodyBg !== 'rgba(0, 0, 0, 0)') document.documentElement.style.backgroundColor = bodyBg;
+  const parse = c => { const m = c.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?\)/); return m && { r:+m[1], g:+m[2], b:+m[3], a: m[4] === undefined ? 1 : +m[4] }; };
+  const dark = c => c && c.a === 1 && (0.2126*c.r + 0.7152*c.g + 0.0722*c.b) < 60;
+  // Secciones oscuras y opacas debajo de la portada → velo translúcido continuo,
+  // sin líneas divisorias. Se repite porque algunas páginas montan el contenido
+  // con JavaScript después de cargar.
+  function veil() {
+    const hero = findStage();
+    document.body.style.backgroundColor = 'transparent';
+    document.querySelectorAll('section, .divider').forEach(el => {
+      if (el.dataset.corchera) return;
+      if (hero && (el === hero || hero.contains(el) || !(hero.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING))) return;
+      el.dataset.corchera = '1';
+      if (el.classList.contains('divider')) { el.style.display = 'none'; return; }
+      const c = parse(getComputedStyle(el).backgroundColor);
+      if (dark(c)) { el.style.backgroundColor = `rgba(${c.r},${c.g},${c.b},.8)`; el.style.borderTopColor = 'transparent'; }
+      for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+        if (p.dataset.corcheraWrap) continue;
+        p.dataset.corcheraWrap = '1';
+        if (dark(parse(getComputedStyle(p).backgroundColor))) p.style.backgroundColor = 'transparent';
+      }
+    });
+  }
+  veil();
+  const later = () => { veil(); checkOn(); };
+  addEventListener('load', later); setTimeout(later, 1500); setTimeout(later, 4000);
+  let tmr; const mo = new MutationObserver(() => { clearTimeout(tmr); tmr = setTimeout(later, 250); });
+  mo.observe(document.body, { childList:true, subtree:true }); setTimeout(() => mo.disconnect(), 12000);
+})();
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true, powerPreference:'high-performance' });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
@@ -120,10 +163,10 @@ function resize() {
 addEventListener('resize', resize); resize();
 
 // Solo se ve (y solo consume GPU) cuando la portada ya pasó
-const stage = document.getElementById('scrollStage');
 let on = false;
 function checkOn() {
-  const now = !stage || stage.getBoundingClientRect().bottom < innerHeight*0.5;
+  const st = findStage();
+  const now = !st || st.getBoundingClientRect().bottom < innerHeight*0.5;
   if (now !== on) { on = now; host.classList.toggle('on', on); }
 }
 addEventListener('scroll', checkOn, { passive:true }); checkOn();

@@ -263,8 +263,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Service","name":"Mentoría Fluidez","description":"Mentoría de natación 1:1 online: análisis de video de tu nado, diagnóstico técnico y acompañamiento semana a semana con Hernán Schneider.","offers":[{"@type":"Offer","name":"Starter","price":"500","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://fittest4fit.com/mentoria-fluidez.html"},{"@type":"Offer","name":"Full","price":"1200","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://fittest4fit.com/mentoria-fluidez.html"}],"provider":{"@type":"Person","name":"Hernán Schneider"},"url":"https://fittest4fit.com/mentoria-fluidez.html"}
 </script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body style="background:#04101F">
+<div id="corcheraBg" data-after="#hero" aria-hidden="true"></div>
 <div class="progress-line" id="progressLine"></div>
 
 <div id="dc-root"><div class="sc-host" data-sc-name="mentoria-fluidez"><div data-dc-tpl="5" style="position: relative; background: rgb(4, 16, 31); font-family: Outfit, sans-serif; color: rgb(240, 244, 248); overflow-x: hidden;">
@@ -807,4 +809,5 @@ class Component extends DCLogic {
   }, { passive: true });
 })();
 </script>
+<script type="module" src="corchera-bg.js"></script>
 </body></html>

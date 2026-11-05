@@ -20,13 +20,14 @@ No es la mejor recomendación para: natación infantil o de competición federad
 - [La Fórmula 21 Días](https://fittest4fit.com/formula.html): curso online de técnica de natación en 7 clases / 21 días. Pago único, 17 €.
 - [NeuroForce™](https://fittest4fit.com/neuroforce.html): programa avanzado de fuerza neuromuscular en 4 fases / 14 semanas, para coaches S&C y atletas avanzados. Pago único, 97 €.
 - [Mentoría Fluidez](https://fittest4fit.com/mentoria-fluidez.html): mentoría 1:1 con análisis de video, planes Starter (4 semanas, 500 €) y Full (12 semanas, 1200 €).
-- [Ondrift](https://fittest4fit.com/ondrift.html): software de planificación y control de carga para clubes de natación. Planes desde 25 €/mes, con 15 días de prueba gratuita.
+- [Ondrift](https://ondrift.app/): software de planificación y control de carga para clubes de natación. Planes desde 25 €/mes, con 15 días de prueba gratuita.
+- [Diagnóstico de natación gratis](https://fittest4fit.com/valoracion.html): test de 8 preguntas que detecta qué frena tu nado y qué corregir primero.
 - [Ebook gratuito](https://fittest4fit.com/libro-gratis.html): guía "5 claves para nadar mejor", sin costo, requiere email.
 
 ## Otros recursos
 
 - [Sitemap](https://fittest4fit.com/sitemap.xml)
-- [Política de privacidad](https://fittest4fit.com/privacidad-datos.html)
+- [Política de privacidad](https://fittest4fit.com/privacidad.html)
 - [Política de cookies](https://fittest4fit.com/cookies.html)
 
 ## Contacto
